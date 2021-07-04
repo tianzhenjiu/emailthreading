@@ -35,7 +35,7 @@ public class Main {
 
         Message message4 =new Message("d","d subject","c");
 
-        Message message5 =new Message("e","e subject","c","a");
+        Message message5 =new Message("e","a subject","f");
 
         Map<String,Container> map=Message.thread(message,message2,message3,message4,message5);
         printThread(map,0);

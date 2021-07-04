@@ -165,15 +165,10 @@ public class Message {
                 } else {
                     container.addChild(ctr);
                 }
-            } else if (ctr.message.subject.length() > container.message.subject.length()) {
+            } else if (ctr.message.subject.length() >= container.message.subject.length()) {
                 ctr.addChild(container);
-            } else if (ctr.message.subject.length() < container.message.subject.length()) {
-                container.addChild(ctr);
             } else {
-                Container newContainer = new Container();
-                newContainer.addChild(ctr);
-                newContainer.addChild(container);
-                subjectTable.put(subject, newContainer);
+                container.addChild(ctr);
             }
 
         }
