@@ -17,8 +17,8 @@ public class Message {
         Set<Container> newChild = new HashSet();
         container.children.forEach(ctr -> {
             newChild.addAll(pruneContainer(ctr));
-            container.removeChild(ctr);
         });
+        container.children.clear();
 
         newChild.forEach(c -> {
             container.addChild(c);
@@ -156,4 +156,13 @@ public class Message {
         return subjectTable;
     }
 
+    @Override
+    public String toString() {
+        return "Message{" +
+                "message=" + message +
+                ", message_id='" + message_id + '\'' +
+                ", references=" + references +
+                ", subject='" + subject + '\'' +
+                '}';
+    }
 }

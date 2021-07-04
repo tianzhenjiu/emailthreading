@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
+
 public class Container {
     Message message;            // (may be null)
     Set<Container> children=new HashSet<>();    // first child
@@ -46,5 +47,14 @@ public class Container {
             });
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Container{" +
+                "message=" + message +
+                ", children=" + children +
+                ", next=" + next +
+                '}';
     }
 }

@@ -18,7 +18,26 @@ public class Main {
         message2.references=new HashSet<>();
         message2.references.add("01");
 
-        Map<String,Container> map=Message.thread(message,message2);
+
+        Message message3=new Message();
+        message3.subject="third";
+        message3.message_id="03";
+        message3.references=new HashSet<>();
+        message3.references.add("08");
+
+        Message message4=new Message();
+        message4.subject="four";
+        message4.message_id="04";
+        message4.references=new HashSet<>();
+        message4.references.add("03");
+
+        Message message5=new Message();
+        message5.subject="five";
+        message5.message_id="05";
+        message5.references=new HashSet<>();
+        message5.references.add("03");
+
+        Map<String,Container> map=Message.thread(message,message2,message3,message4,message5);
         System.out.println(map);
     }
 }
