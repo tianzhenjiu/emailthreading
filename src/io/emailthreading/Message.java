@@ -1,9 +1,12 @@
-package com.company;
+package io.emailthreading;
 
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * @author tianzhenjiu
+ */
 public class Message {
 
     Object message;
@@ -12,6 +15,22 @@ public class Message {
     String subject;
 
 
+    public Message(String message_id, String subject, String... references) {
+        this.message_id = message_id;
+        this.references = new HashSet<>();
+        if (references != null) {
+            for (String ref : references) {
+                this.references.add(ref);
+            }
+        }
+        this.subject = subject;
+    }
+
+    /**
+     * prune children and return new children list
+     * @param container
+     * @return
+     */
     public static Set<Container> pruneContainer(Container container) {
 
         Set<Container> newChild = new HashSet();
@@ -41,6 +60,11 @@ public class Message {
 
     }
 
+    /**
+     * main threading method
+     * @param messages
+     * @return
+     */
     public static Map<String, Container> thread(Message... messages) {
 
         Map<String, Container> idTable = new HashMap<>();
@@ -145,11 +169,11 @@ public class Message {
                 ctr.addChild(container);
             } else if (ctr.message.subject.length() < container.message.subject.length()) {
                 container.addChild(ctr);
-            }else{
-                Container newContainer=new Container();
+            } else {
+                Container newContainer = new Container();
                 newContainer.addChild(ctr);
                 newContainer.addChild(container);
-                subjectTable.put(subject,newContainer);
+                subjectTable.put(subject, newContainer);
             }
 
         }
@@ -159,7 +183,6 @@ public class Message {
     @Override
     public String toString() {
         return "Message{" +
-                "message=" + message +
                 ", message_id='" + message_id + '\'' +
                 ", references=" + references +
                 ", subject='" + subject + '\'' +
